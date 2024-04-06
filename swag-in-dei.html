@@ -46,11 +46,15 @@
         #displayText {
             margin-top: 10px;
         }
+
+        .not-inclusive {
+            color: red;
+        }
     </style>
 </head>
 <body>
     <header>
-        <h1>Welcome to My Website</h1>
+        <h1>DEI or NAH</h1>
     </header>
     <main>
         <label for="textInput">Enter your text:</label>
@@ -59,33 +63,57 @@
         <p id="displayText"></p>
     </main>
     <footer>
-        <p>&copy; 2024 Your Website Name. All rights reserved.</p>
+        <p>&copy; SWAG IN DEI. All rights reserved.</p>
     </footer>
 
     <script>
+        const nonInclusiveWords = [
+            "Chairman",
+            "Policeman",
+            "Fireman",
+            "Stewardess",
+            "Mankind",
+            "Waitress",
+            "Forefathers",
+            "Sportsmanship",
+            "Manpower",
+            "Freshman",
+            "Mailman",
+            "Penmanship",
+            "Salesman",
+            "Craftsman",
+            "Congressman",
+            "Spokesman",
+            "Cameraman",
+            "Middleman",
+            "Fireman",
+            "Postman",
+            "Milkman",
+            "Repairman",
+            "Businessman",
+            "Airman",
+            "Watchman",
+            "Anchorman",
+            "Fisherman",
+            "Garbageman",
+            "Landlord",
+            "Statesman"
+        ];
+
         function displayText() {
             const inputText = document.getElementById('textInput').value;
-            const inclusiveWords = {
-                "Mankind": "Humanity or Humankind",
-                "Chairman": "Chair or Chairperson",
-                "Fireman": "Firefighter",
-                "Policeman": "Police Officer",
-                "Stewardess": "Flight Attendant",
-                "Businessman": "Businessperson or Entrepreneur",
-                "Forefathers": "Ancestors or Forebears",
-                "Mailman": "Mail Carrier or Postal Worker",
-                "Waitress": "Server or Waitstaff",
-                "Salesman": "Salesperson or Sales Representative"
-            };
-            const matchedWord = Object.keys(inclusiveWords).find(word => inputText.toLowerCase() === word.toLowerCase());
-            if (matchedWord) {
-                const inclusiveOptions = inclusiveWords[matchedWord];
-                document.getElementById('displayText').textContent = `Instead of "${matchedWord}", use ${inclusiveOptions}`;
+            const displayElement = document.getElementById('displayText');
+            
+            if (nonInclusiveWords.some(word => inputText.toLowerCase().includes(word.toLowerCase()))) {
+                displayElement.innerHTML = `The word "${inputText}" is not inclusive.`;
+                displayElement.classList.add('not-inclusive');
             } else {
-                document.getElementById('displayText').textContent = `You entered: ${inputText}`;
+                displayElement.innerHTML = `You entered: ${inputText}`;
+                displayElement.classList.remove('not-inclusive');
             }
         }
     </script>
 </body>
 </html>
+
 
