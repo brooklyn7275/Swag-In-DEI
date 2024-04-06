@@ -46,10 +46,6 @@
         #displayText {
             margin-top: 10px;
         }
-
-        .not-inclusive {
-            color: red;
-        }
     </style>
 </head>
 <body>
@@ -63,57 +59,30 @@
         <p id="displayText"></p>
     </main>
     <footer>
-        <p>&copy; SWAG IN DEI. All rights reserved.</p>
+        <p>&copy; Swag in DEI. All rights reserved.</p>
     </footer>
 
     <script>
         const nonInclusiveWords = [
-            "Chairman",
-            "Policeman",
-            "Fireman",
-            "Stewardess",
-            "Mankind",
-            "Waitress",
-            "Forefathers",
-            "Sportsmanship",
-            "Manpower",
-            "Freshman",
-            "Mailman",
-            "Penmanship",
-            "Salesman",
-            "Craftsman",
-            "Congressman",
-            "Spokesman",
-            "Cameraman",
-            "Middleman",
-            "Fireman",
-            "Postman",
-            "Milkman",
-            "Repairman",
-            "Businessman",
-            "Airman",
-            "Watchman",
-            "Anchorman",
-            "Fisherman",
-            "Garbageman",
-            "Landlord",
-            "Statesman"
+            "Chairman", "Policeman", "Fireman", "Stewardess", "Mankind", "Waitress",
+            "Forefathers", "Sportsmanship", "Manpower", "Freshman", "Mailman", "Penmanship",
+            "Salesman", "Craftsman", "Congressman", "Spokesman", "Cameraman", "Middleman",
+            "Fireman", "Postman", "Milkman", "Repairman", "Businessman", "Airman",
+            "Watchman", "Anchorman", "Fisherman", "Garbageman", "Landlord", "Statesman"
         ];
 
         function displayText() {
             const inputText = document.getElementById('textInput').value;
-            const displayElement = document.getElementById('displayText');
+            const words = inputText.split(" ");
+            const inclusiveWords = words.filter(word => !nonInclusiveWords.includes(word));
             
-            if (nonInclusiveWords.some(word => inputText.toLowerCase().includes(word.toLowerCase()))) {
-                displayElement.innerHTML = `The word "${inputText}" is not inclusive.`;
-                displayElement.classList.add('not-inclusive');
+            if (inclusiveWords.length === 0) {
+                document.getElementById('displayText').textContent = "This sentence does not contain any inclusive words.";
             } else {
-                displayElement.innerHTML = `You entered: ${inputText}`;
-                displayElement.classList.remove('not-inclusive');
+                const nonInclusiveWord = words.find(word => nonInclusiveWords.includes(word));
+                document.getElementById('displayText').textContent = `"${nonInclusiveWord}" is not an inclusive word.`;
             }
         }
     </script>
 </body>
 </html>
-
-
