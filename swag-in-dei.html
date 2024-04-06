@@ -1,12 +1,56 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Input Text</title>
+    <title>Basic Website with Input Box</title>
+    <style>
+        body {
+            background-color: green;
+            color: white;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        main {
+            margin: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: white;
+        }
+
+        button {
+            padding: 8px 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #displayText {
+            margin-top: 10px;
+        }
+    </style>
 </head>
 <body>
     <header>
-        <h1>Welcome to "Is it inclusive?"</h1>
+        <h1>Welcome to My Website</h1>
     </header>
     <main>
         <label for="textInput">Enter your text:</label>
@@ -21,7 +65,26 @@
     <script>
         function displayText() {
             const inputText = document.getElementById('textInput').value;
-            document.getElementById('displayText').textContent = `You entered: ${inputText}`;}
+            const inclusiveWords = {
+                "Mankind": "Humanity or Humankind",
+                "Chairman": "Chair or Chairperson",
+                "Fireman": "Firefighter",
+                "Policeman": "Police Officer",
+                "Stewardess": "Flight Attendant",
+                "Businessman": "Businessperson or Entrepreneur",
+                "Forefathers": "Ancestors or Forebears",
+                "Mailman": "Mail Carrier or Postal Worker",
+                "Waitress": "Server or Waitstaff",
+                "Salesman": "Salesperson or Sales Representative"
+            };
+            const matchedWord = Object.keys(inclusiveWords).find(word => inputText.toLowerCase() === word.toLowerCase());
+            if (matchedWord) {
+                const inclusiveOptions = inclusiveWords[matchedWord];
+                document.getElementById('displayText').textContent = `Instead of "${matchedWord}", use ${inclusiveOptions}`;
+            } else {
+                document.getElementById('displayText').textContent = `You entered: ${inputText}`;
+            }
+        }
     </script>
 </body>
 </html>
