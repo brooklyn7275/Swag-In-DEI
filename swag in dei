@@ -1,0 +1,28 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Input Text</title>
+</head>
+<body>
+    <header>
+        <h1>Welcome to "Is it inclusive?"</h1>
+    </header>
+    <main>
+        <label for="textInput">Enter your text:</label>
+        <input type="text" id="textInput" name="textInput">
+        <button type="button" onclick="displayText()">Submit</button>
+        <p id="displayText"></p>
+    </main>
+    <footer>
+        <p>&copy; 2024 Your Website Name. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function displayText() {
+            const inputText = document.getElementById('textInput').value;
+            document.getElementById('displayText').textContent = `You entered: ${inputText}`;}
+    </script>
+</body>
+</html>
+
