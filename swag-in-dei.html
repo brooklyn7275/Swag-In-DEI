@@ -55,7 +55,7 @@
     <main>
         <label for="textInput">Enter your text:</label>
         <input type="text" id="textInput" name="textInput">
-        <button type="button" onclick="displayText()">Submit</button>
+        <button type="button" onclick="checkInclusive()">Submit</button>
         <p id="displayText"></p>
     </main>
     <footer>
@@ -64,25 +64,28 @@
 
     <script>
         const nonInclusiveWords = [
-            "Chairman", "Policeman", "Fireman", "Stewardess", "Mankind", "Waitress",
-            "Forefathers", "Sportsmanship", "Manpower", "Freshman", "Mailman", "Penmanship",
-            "Salesman", "Craftsman", "Congressman", "Spokesman", "Cameraman", "Middleman",
-            "Fireman", "Postman", "Milkman", "Repairman", "Businessman", "Airman",
-            "Watchman", "Anchorman", "Fisherman", "Garbageman", "Landlord", "Statesman"
+            "Chairman", "Policeman", "Fireman", "Stewardess", "Mankind", 
+            "Waitress", "Forefathers", "Sportsmanship", "Manpower", "Freshman", 
+            "Mailman", "Penmanship", "Salesman", "Craftsman", "Congressman", 
+            "Spokesman", "Cameraman", "Middleman", "Fireman", "Postman", 
+            "Milkman", "Repairman", "Businessman", "Airman", "Watchman", 
+            "Anchorman", "Fisherman", "Garbageman", "Landlord", "Statesman"
         ];
 
-        function displayText() {
+        function checkInclusive() {
             const inputText = document.getElementById('textInput').value;
-            const words = inputText.split(" ");
-            const inclusiveWords = words.filter(word => !nonInclusiveWords.includes(word));
-            
-            if (inclusiveWords.length === 0) {
-                document.getElementById('displayText').textContent = "This sentence does not contain any inclusive words.";
-            } else {
-                const nonInclusiveWord = words.find(word => nonInclusiveWords.includes(word));
-                document.getElementById('displayText').textContent = `"${nonInclusiveWord}" is not an inclusive word.`;
+            const words = inputText.split(' ');
+
+            for (let word of words) {
+                if (nonInclusiveWords.includes(word)) {
+                    document.getElementById('displayText').textContent = `"${word}" is not an inclusive term.`;
+                    return;
+                }
             }
+
+            document.getElementById('displayText').textContent = "No non-inclusive words found.";
         }
     </script>
 </body>
 </html>
+
