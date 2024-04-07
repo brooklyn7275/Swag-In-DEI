@@ -12,13 +12,16 @@
             margin: 0;
             padding: 0;
         }
+
         main {
             margin: 20px;
         }
+
         label {
             display: block;
             margin-bottom: 10px;
         }
+
         input[type="text"] {
             width: 100%;
             padding: 8px;
@@ -26,6 +29,7 @@
             border-radius: 5px;
             background-color: white;
         }
+
         button {
             padding: 8px 16px;
             background-color: #4CAF50;
@@ -34,78 +38,90 @@
             border-radius: 5px;
             cursor: pointer;
         }
+
         button:hover {
             background-color: #45a049;
         }
-         #displayText {
-             margin-top: 10px;
-         }
 
-         .not-inclusive {
-             color: red;
-         }
-     </style>
- </head>
- <body>
-     <header>
-         <h1>DEI or NAH</h1>
-     </header>
-     <main>
-         <label for="textInput">Enter your text:</label>
+        #displayText {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to DEI or NAH</h1>
+    </header>
+    <main>
+        <label for="textInput">Enter your text:</label>
         <input type="text" id="textInput" name="textInput">
         <button type="button" onclick="displayText()">Submit</button>
-         <p id="displayText"></p>
-     </main>
-     <footer>
-         <p>&copy; SWAG IN DEI. All rights reserved.</p>
-     </footer>
+        <p id="displayText"></p>
+    </main>
+    <footer>
+        <p>&copy; Swag in DEI. All rights reserved.</p>
+    </footer>
 
-     <script>
-         const nonInclusiveWords = [
-             "Chairman",
-             "Policeman",
-             "Fireman",
-             "Stewardess",
-             "Mankind",
-             "Waitress",
-             "Forefathers",
-             "Sportsmanship",
-             "Manpower",
-             "Freshman",
-             "Mailman",
-             "Penmanship",
-             "Salesman",
-             "Craftsman",
-             "Congressman",
-             "Spokesman",
-             "Cameraman",
-             "Middleman",
-             "Fireman",
-             "Postman",
-             "Milkman",
-             "Repairman",
-             "Businessman",
-             "Airman",
-             "Watchman",
-             "Anchorman",
-             "Fisherman",
-             "Garbageman",
-             "Landlord",
-             "Statesman"
-         ];
+    <script>
+        const nonInclusiveWords = [
+            "Chairman",
+            "Policeman",
+            "Fireman",
+            "Stewardess",
+            "Mankind",
+            "Waitress",
+            "Forefathers",
+            "Sportsmanship",
+            "Manpower",
+            "Freshman",
+            "Mailman",
+            "Penmanship",
+            "Salesman",
+            "Craftsman",
+            "Congressman",
+            "Spokesman",
+            "Cameraman",
+            "Middleman",
+            "Postman",
+            "Milkman",
+            "Repairman",
+            "Businessman",
+            "Airman",
+            "Watchman",
+            "Anchorman",
+            "Fisherman",
+            "Garbageman",
+            "Landlord",
+            "Statesman"
+        ];
 
-         function displayText() {
-             const inputText = document.getElementById('textInput').value;
-             const displayElement = document.getElementById('displayText');
+        function displayText() {
+            const inputText = document.getElementById('textInput').value;
+            const words = inputText.split(/\s+/); // Split input into words
+            let inclusiveWords = [];
+            let nonInclusiveWordsFound = [];
 
-             if (nonInclusiveWords.some(word => inputText.toLowerCase().includes(word.toLowerCase()))) {
-                 displayElement.innerHTML = `The word "${inputText}" is not inclusive.`;
-                 displayElement.classList.add('not-inclusive');
-             } else {
-                 displayElement.innerHTML = `You entered: ${inputText}`;
-                 displayElement.classList.remove('not-inclusive');
-             }
-         }
-     </script>
- </body>
- </html>
+            words.forEach(word => {
+                if (nonInclusiveWords.includes(word)) {
+                    nonInclusiveWordsFound.push(word);
+                } else {
+                    inclusiveWords.push(word);
+                }
+            });
+
+            let displayMessage = '';
+
+            if (nonInclusiveWordsFound.length > 0) {
+                displayMessage = 'Non-inclusive words found:\n';
+                nonInclusiveWordsFound.forEach(nonInclusiveWord => {
+                    displayMessage += `${nonInclusiveWord} is not inclusive.\n`;
+                });
+            } else {
+                displayMessage = 'No non-inclusive words found.';
+            }
+
+            document.getElementById('displayText').textContent = displayMessage;
+        }
+    </script>
+</body>
+</html>
