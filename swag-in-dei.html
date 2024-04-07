@@ -59,7 +59,7 @@
         <p id="displayText"></p>
     </main>
     <footer>
-        <p>&copy; Swag in DEI. All rights reserved.</p>
+        <p>&copy; DEI. All rights reserved.</p>
     </footer>
 
     <script>
@@ -98,7 +98,16 @@
         function displayText() {
             const inputText = document.getElementById('textInput').value;
             const words = inputText.split(/\s+/); // Split input into words
-            let nonInclusiveWordsFound = words.filter(word => nonInclusiveWords.includes(word));
+            let inclusiveWords = [];
+            let nonInclusiveWordsFound = [];
+
+            words.forEach(word => {
+                if (nonInclusiveWords.includes(word)) {
+                    nonInclusiveWordsFound.push(word);
+                } else {
+                    inclusiveWords.push(word);
+                }
+            });
 
             let displayMessage = '';
 
