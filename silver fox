@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Book</title>
+    <style>
+        body {
+            background-color: #f0f0f0; /* Grey background */
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: #fff; /* White background for content */
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #333; /* Dark text color */
+        }
+        .chapter {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>My Book</h1>
+        <div class="chapter">
+            <h2>Chapter 1: Slice of Life 1</h2>
+            <p>Content of Chapter 1 goes here...</p>
+        </div>
+        <div class="chapter">
+            <h2>Chapter 2: Sold on Spring Break 2</h2>
+            <p>Content of Chapter 2 goes here...</p>
+        </div>
+    </div>
+</body>
+</html>
