@@ -45,6 +45,7 @@
 
         #displayText {
             margin-top: 10px;
+            white-space: pre-line; /* Allows line breaks in the displayed text */
         }
     </style>
 </head>
@@ -98,14 +99,11 @@
         function displayText() {
             const inputText = document.getElementById('textInput').value;
             const words = inputText.split(/\s+/); // Split input into words
-            let inclusiveWords = [];
             let nonInclusiveWordsFound = [];
 
             words.forEach(word => {
                 if (nonInclusiveWords.includes(word)) {
                     nonInclusiveWordsFound.push(word);
-                } else {
-                    inclusiveWords.push(word);
                 }
             });
 
