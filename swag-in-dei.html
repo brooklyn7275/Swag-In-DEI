@@ -34,8 +34,9 @@
             resultContainer.innerHTML = ''; // Clear previous results
 
             textInput.split(/\s+/).forEach(function(word) {
-                if (nonInclusiveWords.includes(word)) {
-                    wordsUsed.push(word);
+                var normalizedWord = word.toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,""); // Remove punctuation and convert to lowercase for comparison
+                if (nonInclusiveWords.includes(normalizedWord)) {
+                    wordsUsed.push(normalizedWord);
                 }
             });
 
