@@ -25,8 +25,8 @@
     <script>
         document.getElementById('textInputForm').addEventListener('submit', function(event) {
             event.preventDefault();
-            var textInput = document.getElementById('textInput').value;
-            var nonInclusiveWords = ["Chairman", "Policeman", "Fireman", "Stewardess", "Mankind", "Waitress", "Forefathers", "Sportsmanship", "Manpower", "Freshman", "Mailman", "Penmanship", "Salesman", "Craftsman", "Congressman", "Spokesman", "Cameraman", "Middleman", "Fireman", "Postman", "Milkman", "Repairman", "Businessman", "Airman", "Watchman", "Anchorman", "Fisherman", "Garbageman", "Landlord", "Statesman"];
+            var textInput = document.getElementById('textInput').value.toLowerCase();
+            var nonInclusiveWords = ["chairman", "policeman", "fireman", "stewardess", "mankind", "waitress", "forefathers", "sportsmanship", "manpower", "freshman", "mailman", "penmanship", "salesman", "craftsman", "congressman", "spokesman", "cameraman", "middleman", "fireman", "postman", "milkman", "repairman", "businessman", "airman", "watchman", "anchorman", "fisherman", "garbageman", "landlord", "statesman"];
             var inclusiveWords = ["Chairperson (or Chair)", "Police officer", "Firefighter", "Flight attendant", "Humanity", "Server (for Waitress)", "Ancestors (for Forefathers)", "Sportsmanship (this one is fine)", "Workforce (or Personnel)", "First-year student (for Freshman)", "Postal worker (for Mailman)", "Handwriting (for Penmanship)", "Salesperson (or Sales representative)", "Artisan (for Craftsman)", "Representative (or Legislator)", "Spokesperson", "Videographer (for Cameraman)", "Intermediary (for Middleman)", "Firefighter", "Postal worker (for Postman)", "Delivery person (for Milkman)", "Technician (for Repairman)", "Businessperson (or Entrepreneur)", "Aviator (for Airman)", "Security guard (for Watchman)", "Anchor (for Anchorman)", "Fisher (for Fisherman)", "Waste collector (for Garbageman)", "Property owner (for Landlord)", "Statesperson (or Stateswoman)"];
 
             var wordsUsed = [];
@@ -34,9 +34,8 @@
             resultContainer.innerHTML = ''; // Clear previous results
 
             textInput.split(/\s+/).forEach(function(word) {
-                var normalizedWord = word.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"").toLowerCase().trim(); // Remove punctuation, convert to lowercase, and trim spaces
-                if (nonInclusiveWords.includes(normalizedWord)) {
-                    wordsUsed.push(normalizedWord);
+                if (nonInclusiveWords.includes(word)) {
+                    wordsUsed.push(word);
                 }
             });
 
