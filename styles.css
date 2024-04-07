@@ -1,0 +1,9 @@
+body {
+    background-color: mediumseagreen;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+.result {
+    /* color: blue; */
+    color: red;
+}

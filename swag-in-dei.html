@@ -1,16 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <style>
-        body {
-            background-color: mediumseagreen;
-            color: white;
-            font-family: Arial, sans-serif;
-        }
-        .result {
-            color: blue;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
     <h1>Check Inclusivity</h1>
@@ -22,44 +13,6 @@
 
     <div id="resultContainer"></div>
 
-    <script>
-        document.getElementById('textInputForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            var textInput = document.getElementById('textInput').value.toLowerCase();
-            var nonInclusiveWords = ["chairman", "policeman", "fireman", "stewardess", "mankind", "waitress", "forefathers", "sportsmanship", "manpower", "freshman", "mailman", "penmanship", "salesman", "craftsman", "congressman", "spokesman", "cameraman", "middleman", "fireman", "postman", "milkman", "repairman", "businessman", "airman", "watchman", "anchorman", "fisherman", "garbageman", "landlord", "statesman"];
-            var inclusiveWords = ["Chairperson (or Chair)", "Police officer", "Firefighter", "Flight attendant", "Humanity", "Server (for Waitress)", "Ancestors (for Forefathers)", "Sportsmanship (this one is fine)", "Workforce (or Personnel)", "First-year student (for Freshman)", "Postal worker (for Mailman)", "Handwriting (for Penmanship)", "Salesperson (or Sales representative)", "Artisan (for Craftsman)", "Representative (or Legislator)", "Spokesperson", "Videographer (for Cameraman)", "Intermediary (for Middleman)", "Firefighter", "Postal worker (for Postman)", "Delivery person (for Milkman)", "Technician (for Repairman)", "Businessperson (or Entrepreneur)", "Aviator (for Airman)", "Security guard (for Watchman)", "Anchor (for Anchorman)", "Fisher (for Fisherman)", "Waste collector (for Garbageman)", "Property owner (for Landlord)", "Statesperson (or Stateswoman)"];
-
-            var wordsUsed = [];
-            var resultContainer = document.getElementById('resultContainer');
-            resultContainer.innerHTML = ''; // Clear previous results
-
-            textInput.split(/\s+/).forEach(function(word) {
-                if (nonInclusiveWords.includes(word)) {
-                    wordsUsed.push(word);
-                }
-            });
-
-            if (wordsUsed.length > 0) {
-                var resultMessage = 'The following non-inclusive words were used: ' + wordsUsed.join(', ');
-                var resultElement = document.createElement('div');
-                resultElement.textContent = resultMessage;
-                resultContainer.appendChild(resultElement);
-
-                wordsUsed.forEach(function(word) {
-                    var index = nonInclusiveWords.indexOf(word);
-                    var inclusiveVersion = inclusiveWords[index];
-                    var suggestionElement = document.createElement('div');
-                    suggestionElement.classList.add('result');
-                    suggestionElement.textContent = 'Try this instead: ' + inclusiveVersion;
-                    resultContainer.appendChild(suggestionElement);
-                });
-            } else {
-                var noResultMessage = 'No non-inclusive words were used.';
-                var noResultElement = document.createElement('div');
-                noResultElement.textContent = noResultMessage;
-                resultContainer.appendChild(noResultElement);
-            }
-        });
-    </script>
+    <script src="main.js"></script>
 </body>
 </html>
