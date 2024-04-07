@@ -1,112 +1,65 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Basic Website with Input Box</title>
     <style>
         body {
-            background-color: green;
+            background-color: mediumseagreen;
             color: white;
             font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
         }
-
-        main {
-            margin: 20px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 10px;
-        }
-
-        input[type="text"] {
-            width: 100%;
-            padding: 8px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            background-color: white;
-        }
-
-        button {
-            padding: 8px 16px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: #45a049;
-        }
-
-        #displayText {
-            margin-top: 10px;
+        .result {
+            color: blue;
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>Welcome to DEI or NAH</h1>
-    </header>
-    <main>
-        <label for="textInput">Enter your text:</label>
-        <input type="text" id="textInput" name="textInput">
-        <button type="button" onclick="displayText()">Submit</button>
-        <p id="displayText"></p>
-    </main>
-    <footer>
-        <p>&copy; 2024. All rights reserved.</p>
-    </footer>
+    <h1>Check Inclusivity</h1>
+    <form id="textInputForm">
+        <label for="textInput">Enter text:</label><br>
+        <textarea id="textInput" name="textInput" rows="4" cols="50"></textarea><br>
+        <input type="submit" value="Submit">
+    </form>
+
+    <div id="resultContainer"></div>
 
     <script>
-        const nonInclusiveWords = [
-            "Chairman",
-            "Policeman",
-            "Fireman",
-            "Stewardess",
-            "Mankind",
-            "Waitress",
-            "Forefathers",
-            "Sportsmanship",
-            "Manpower",
-            "Freshman",
-            "Mailman",
-            "Penmanship",
-            "Salesman",
-            "Craftsman",
-            "Congressman",
-            "Spokesman",
-            "Cameraman",
-            "Middleman",
-            "Postman",
-            "Milkman",
-            "Repairman",
-            "Businessman",
-            "Airman",
-            "Watchman",
-            "Anchorman",
-            "Fisherman",
-            "Garbageman",
-            "Landlord",
-            "Statesman"
-        ];
+        document.getElementById('textInputForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            var textInput = document.getElementById('textInput').value;
+            var nonInclusiveWords = ["Chairman", "Policeman", "Fireman", "Stewardess", "Mankind", "Waitress", "Forefathers", "Sportsmanship", "Manpower", "Freshman", "Mailman", "Penmanship", "Salesman", "Craftsman", "Congressman", "Spokesman", "Cameraman", "Middleman", "Fireman", "Postman", "Milkman", "Repairman", "Businessman", "Airman", "Watchman", "Anchorman", "Fisherman", "Garbageman", "Landlord", "Statesman"];
+            var inclusiveWords = ["Chairperson (or Chair)", "Police officer", "Firefighter", "Flight attendant", "Humanity", "Server (for Waitress)", "Ancestors (for Forefathers)", "Sportsmanship (this one is fine)", "Workforce (or Personnel)", "First-year student (for Freshman)", "Postal worker (for Mailman)", "Handwriting (for Penmanship)", "Salesperson (or Sales representative)", "Artisan (for Craftsman)", "Representative (or Legislator)", "Spokesperson", "Videographer (for Cameraman)", "Intermediary (for Middleman)", "Firefighter", "Postal worker (for Postman)", "Delivery person (for Milkman)", "Technician (for Repairman)", "Businessperson (or Entrepreneur)", "Aviator (for Airman)", "Security guard (for Watchman)", "Anchor (for Anchorman)", "Fisher (for Fisherman)", "Waste collector (for Garbageman)", "Property owner (for Landlord)", "Statesperson (or Stateswoman)"];
 
-        function displayText() {
-            const inputText = document.getElementById('textInput').value;
-            const words = inputText.split(/\s+/); // Split input into words
+            var wordsUsed = [];
+            var resultContainer = document.getElementById('resultContainer');
+            resultContainer.innerHTML = ''; // Clear previous results
 
-            let nonInclusiveWordsFound = words.filter(word => nonInclusiveWords.includes(word));
+            textInput.split(/\s+/).forEach(function(word) {
+                if (nonInclusiveWords.includes(word)) {
+                    wordsUsed.push(word);
+                }
+            });
 
-            if (nonInclusiveWordsFound.length > 0) {
-                document.getElementById('displayText').textContent = `Non-inclusive words found: ${nonInclusiveWordsFound.join(', ')}. These words are not inclusive.`;
+            if (wordsUsed.length > 0) {
+                var resultMessage = 'The following non-inclusive words were used: ' + wordsUsed.join(', ');
+                var resultElement = document.createElement('div');
+                resultElement.textContent = resultMessage;
+                resultContainer.appendChild(resultElement);
+
+                wordsUsed.forEach(function(word) {
+                    var index = nonInclusiveWords.indexOf(word);
+                    var inclusiveVersion = inclusiveWords[index];
+                    var suggestionElement = document.createElement('div');
+                    suggestionElement.classList.add('result');
+                    suggestionElement.textContent = 'Try this instead: ' + inclusiveVersion;
+                    resultContainer.appendChild(suggestionElement);
+                });
             } else {
-                document.getElementById('displayText').textContent = 'No non-inclusive words found.';
+                var noResultMessage = 'No non-inclusive words were used.';
+                var noResultElement = document.createElement('div');
+                noResultElement.textContent = noResultMessage;
+                resultContainer.appendChild(noResultElement);
             }
-        }
+        });
     </script>
 </body>
 </html>
