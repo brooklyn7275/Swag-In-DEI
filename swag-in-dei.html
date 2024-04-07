@@ -45,7 +45,6 @@
 
         #displayText {
             margin-top: 10px;
-            white-space: pre-line; /* Allows line breaks in the displayed text */
         }
     </style>
 </head>
@@ -60,7 +59,7 @@
         <p id="displayText"></p>
     </main>
     <footer>
-        <p>&copy; Swag in DEI. All rights reserved.</p>
+        <p>&copy; 2024. All rights reserved.</p>
     </footer>
 
     <script>
@@ -99,26 +98,14 @@
         function displayText() {
             const inputText = document.getElementById('textInput').value;
             const words = inputText.split(/\s+/); // Split input into words
-            let nonInclusiveWordsFound = [];
 
-            words.forEach(word => {
-                if (nonInclusiveWords.includes(word)) {
-                    nonInclusiveWordsFound.push(word);
-                }
-            });
-
-            let displayMessage = '';
+            let nonInclusiveWordsFound = words.filter(word => nonInclusiveWords.includes(word));
 
             if (nonInclusiveWordsFound.length > 0) {
-                displayMessage = 'Non-inclusive words found:\n';
-                nonInclusiveWordsFound.forEach(nonInclusiveWord => {
-                    displayMessage += `${nonInclusiveWord} is not inclusive.\n`;
-                });
+                document.getElementById('displayText').textContent = `Non-inclusive words found: ${nonInclusiveWordsFound.join(', ')}. These words are not inclusive.`;
             } else {
-                displayMessage = 'No non-inclusive words found.';
+                document.getElementById('displayText').textContent = 'No non-inclusive words found.';
             }
-
-            document.getElementById('displayText').textContent = displayMessage;
         }
     </script>
 </body>
