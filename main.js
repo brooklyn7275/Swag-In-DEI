@@ -31,7 +31,21 @@ document.getElementById('textInputForm').addEventListener('submit', function(eve
         "fisherman": "Fisher",
         "garbageman": "Waste collector",
         "landlord": "Property owner",
-        "statesman": "Statesperson (or Stateswoman)"
+        "statesman": "Statesperson (or Stateswoman)",
+        "manmade": "Artificial",
+        "manhours": "Work hours",
+        "manhandle": "Handle roughly",
+        "manhunt": "Search operation",
+        "mankind": "Humankind",
+        "manpower": "Workforce",
+        "middleman": "Intermediary",
+        "ombudsman": "Ombudsperson",
+        "workmanlike": "Professional-like",
+        "workmanship": "Craftsmanship",
+        "man-eating": "Dangerous",
+        "man-sized": "Large-sized",
+        "man-to-man": "One-to-one",
+        "manmade": "Synthetic",
     };
 
     var wordsUsed = [];
