@@ -34,7 +34,7 @@
             resultContainer.innerHTML = ''; // Clear previous results
 
             textInput.split(/\s+/).forEach(function(word) {
-                var normalizedWord = word.trim(); // Remove leading/trailing spaces
+                var normalizedWord = word.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"").toLowerCase().trim(); // Remove punctuation, convert to lowercase, and trim spaces
                 if (nonInclusiveWords.includes(normalizedWord)) {
                     wordsUsed.push(normalizedWord);
                 }
